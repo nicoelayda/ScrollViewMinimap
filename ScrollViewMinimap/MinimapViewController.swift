@@ -17,6 +17,7 @@ class MinimapViewController: UIViewController {
         
         setupScrollView()
         setupImageView()
+        setupMinimap()
     }
     
     private func setupScrollView() {
@@ -34,11 +35,26 @@ class MinimapViewController: UIViewController {
         imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: aspectRatio).isActive = true
     }
 
+    private func setupMinimap() {
+        minimap.scrollView = scrollView
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.minimap.setNeedsDisplay()
+        }
+    }
 }
 
 // MARK: - UIScrollViewDelegate
 
 extension MinimapViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        minimap.setNeedsUpdateConstraints()
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        minimap.setNeedsUpdateConstraints()
+    }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return contentView
