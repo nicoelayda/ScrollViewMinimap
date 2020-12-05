@@ -13,6 +13,8 @@ open class ScrollViewMinimap: UIControl {
         }
     }
     
+    public var scrollViewCentersContent = false
+    
     // MARK: - Image View
     
     private let imageView = UIImageView()
@@ -66,12 +68,19 @@ open class ScrollViewMinimap: UIControl {
     }
     
     public override func updateConstraints() {
-        let leftOffset = (contentInset.left + contentOffset.x) / (zoomScale * scrollViewWidthScale)
+        var leftOffset = (contentInset.left + contentOffset.x) / (zoomScale * scrollViewWidthScale)
+        var topOffset = (contentInset.top + contentOffset.y) / (zoomScale * scrollViewHeightScale)
+        
+        if scrollViewCentersContent, let scrollView = scrollView {
+            let maxXCenteringOffset = (scrollView.frame.width - scrollView.trueContentSize.width) / scrollViewWidthScale
+            leftOffset += min(scrollableArea.width, maxXCenteringOffset) / 2
+            
+            let maxYCenteringOffset = (scrollView.frame.height - scrollView.trueContentSize.height) / scrollViewHeightScale
+            topOffset += min(scrollableArea.height, maxYCenteringOffset) / 2
+        }
+        
         highlightViewLeftConstraint.constant = min(max(0, leftOffset), scrollableArea.width)
-        
-        let topOffset = (contentInset.top + contentOffset.y) / (zoomScale * scrollViewHeightScale)
         highlightViewTopConstraint.constant = min(max(0, topOffset), scrollableArea.height)
-        
         highlightViewWidthConstraint.constant = highlightViewSize.width
         highlightViewHeightConstraint.constant = highlightViewSize.height
 
@@ -160,4 +169,13 @@ private extension UIView {
             layer.render(in: context.cgContext)
         }
     }
+}
+
+private extension UIScrollView {
+    
+    var trueContentSize: CGSize {
+        CGSize(width: contentSize.width / zoomScale,
+               height: contentSize.height / zoomScale)
+    }
+    
 }

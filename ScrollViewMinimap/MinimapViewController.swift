@@ -20,6 +20,14 @@ class MinimapViewController: UIViewController {
         setupMinimap()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.centerContentView(in: self.scrollView)
+        }
+    }
+    
     private func setupScrollView() {
         scrollView.delegate = self
         scrollView.minimumZoomScale = 1.0
@@ -37,22 +45,30 @@ class MinimapViewController: UIViewController {
 
     private func setupMinimap() {
         minimap.scrollView = scrollView
+        minimap.scrollViewCentersContent = true
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.minimap.setNeedsDisplay()
         }
+    }
+    
+    private func centerContentView(in scrollView: UIScrollView) {
+        // Centers the content view if it is smaller than the scroll view frame.
+        let leftOffset = max((scrollView.bounds.width - scrollView.contentSize.width) / 2, 0)
+        let topOffset = max((scrollView.bounds.height - scrollView.contentSize.height) / 2, 0)
+        scrollView.contentInset = UIEdgeInsets(top: topOffset, left: leftOffset, bottom: 0, right: 0)
     }
 }
 
 // MARK: - UIScrollViewDelegate
 
 extension MinimapViewController: UIScrollViewDelegate {
-
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         minimap.setNeedsUpdateConstraints()
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        self.centerContentView(in: self.scrollView)
         minimap.setNeedsUpdateConstraints()
     }
     
