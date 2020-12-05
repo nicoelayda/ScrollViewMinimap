@@ -40,8 +40,8 @@ open class ScrollViewMinimap: UIControl {
     }()
     
     private var highlightViewSize: CGSize {
-        CGSize(width: min(frame.width, frame.width / zoomScale),
-               height: min(frame.height, frame.height / zoomScale))
+        CGSize(width: min(frame.width, frame.width / zoomScale * minimumZoomScale),
+               height: min(frame.height, frame.height / zoomScale * minimumZoomScale))
     }
     
     private var scrollableArea: CGSize {
@@ -61,21 +61,21 @@ open class ScrollViewMinimap: UIControl {
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
         guard let scrollView = scrollView else { return }
-        let lastZoomScale = zoomScale
-        scrollView.setZoomScale(1, animated: false)
+        let lastZoomScale = scrollView.zoomScale
+        scrollView.setZoomScale(scrollView.minimumZoomScale, animated: false)
         imageView.image = scrollView.asImage()
         scrollView.setZoomScale(lastZoomScale, animated: false)
     }
     
     public override func updateConstraints() {
-        var leftOffset = (contentInset.left + contentOffset.x) / (zoomScale * scrollViewWidthScale)
-        var topOffset = (contentInset.top + contentOffset.y) / (zoomScale * scrollViewHeightScale)
+        var leftOffset = (contentInset.left + contentOffset.x) / (zoomScale * scrollViewWidthScale) * minimumZoomScale
+        var topOffset = (contentInset.top + contentOffset.y) / (zoomScale * scrollViewHeightScale) * minimumZoomScale
         
         if scrollViewCentersContent, let scrollView = scrollView {
-            let maxXCenteringOffset = (scrollView.frame.width - scrollView.trueContentSize.width) / scrollViewWidthScale
+            let maxXCenteringOffset = (scrollView.frame.width - (scrollView.trueContentSize.width * minimumZoomScale)) / scrollViewWidthScale
             leftOffset += min(scrollableArea.width, maxXCenteringOffset) / 2
             
-            let maxYCenteringOffset = (scrollView.frame.height - scrollView.trueContentSize.height) / scrollViewHeightScale
+            let maxYCenteringOffset = (scrollView.frame.height - (scrollView.trueContentSize.height * minimumZoomScale)) / scrollViewHeightScale
             topOffset += min(scrollableArea.height, maxYCenteringOffset) / 2
         }
         
@@ -145,6 +145,11 @@ private extension ScrollViewMinimap {
     var zoomScale: CGFloat {
         guard let scrollView = scrollView else { return 1 }
         return scrollView.zoomScale
+    }
+    
+    var minimumZoomScale: CGFloat {
+        guard let scrollView = scrollView else { return 1 }
+        return scrollView.minimumZoomScale
     }
     
     // Minimap width scale relative to managed UIScrollView's width
