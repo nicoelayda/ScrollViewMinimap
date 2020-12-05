@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ScrollViewMinimap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3c-nq-Wnu">
+                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Knm-Cg-RPV">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="818"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Z2V-ev-CZd">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="818"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Z2V-ev-CZd" firstAttribute="top" secondItem="Knm-Cg-RPV" secondAttribute="top" id="9ky-yk-bKI"/>
+                                            <constraint firstItem="Z2V-ev-CZd" firstAttribute="leading" secondItem="Knm-Cg-RPV" secondAttribute="leading" id="Dd6-gl-zQf"/>
+                                            <constraint firstAttribute="trailing" secondItem="Z2V-ev-CZd" secondAttribute="trailing" id="DnR-2E-Iyh"/>
+                                            <constraint firstAttribute="bottom" secondItem="Z2V-ev-CZd" secondAttribute="bottom" id="Gik-qi-9Om"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="width" secondItem="dIB-80-3VY" secondAttribute="width" id="0L6-KG-oeF"/>
+                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="height" secondItem="dIB-80-3VY" secondAttribute="height" id="323-Y9-ttZ"/>
+                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="top" secondItem="xem-2O-JDI" secondAttribute="top" id="Hmx-Qr-m7O"/>
+                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="trailing" secondItem="xem-2O-JDI" secondAttribute="trailing" id="cqe-hc-kJT"/>
+                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="bottom" secondItem="xem-2O-JDI" secondAttribute="bottom" id="sSW-nW-ayg"/>
+                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="leading" secondItem="xem-2O-JDI" secondAttribute="leading" id="spO-br-cM9"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="xem-2O-JDI"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="dIB-80-3VY"/>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wu2-3R-vt3" customClass="ScrollViewMinimap" customModule="ScrollViewMinimap" customModuleProvider="target">
+                                <rect key="frame" x="274" y="608.5" width="112" height="245.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N3c-nq-Wnu" secondAttribute="trailing" constant="20" id="1eI-Jv-UVd"/>
+                            <constraint firstItem="Wu2-3R-vt3" firstAttribute="height" secondItem="N3c-nq-Wnu" secondAttribute="height" multiplier="0.3" id="5HI-dk-dNV"/>
+                            <constraint firstItem="N3c-nq-Wnu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="AUR-K2-iPA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Wu2-3R-vt3" secondAttribute="trailing" constant="28" id="LFM-Zg-H3Y"/>
+                            <constraint firstItem="N3c-nq-Wnu" firstAttribute="bottom" secondItem="Wu2-3R-vt3" secondAttribute="bottom" constant="8" id="QWC-si-Y4K"/>
+                            <constraint firstItem="N3c-nq-Wnu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="k1q-9y-aw4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="N3c-nq-Wnu" secondAttribute="bottom" id="mwz-UM-INo"/>
+                            <constraint firstItem="Wu2-3R-vt3" firstAttribute="width" secondItem="N3c-nq-Wnu" secondAttribute="width" multiplier="0.3" id="tDj-rh-QJE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="Knm-Cg-RPV" id="dqj-xy-XAR"/>
+                        <outlet property="imageView" destination="Z2V-ev-CZd" id="YaT-KD-wUC"/>
+                        <outlet property="minimap" destination="Wu2-3R-vt3" id="dpD-mz-ggZ"/>
+                        <outlet property="scrollView" destination="N3c-nq-Wnu" id="PNb-h4-jIE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-214.49275362318843" y="93.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
