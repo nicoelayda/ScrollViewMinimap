@@ -43,8 +43,10 @@ open class ScrollViewMinimap: UIControl {
     }()
     
     private var highlightViewSize: CGSize {
-        CGSize(width: min(frame.width, frame.width / zoomScale * minimumZoomScale),
-               height: min(frame.height, frame.height / zoomScale * minimumZoomScale))
+        guard let scrollView = scrollView else { return .zero }
+        let translatedScrollViewScaleFactor = scrollViewScaleFactor(translatedForMinimumZoomScale: true)
+        return CGSize(width: min(frame.width, scrollView.frame.width / translatedScrollViewScaleFactor),
+                      height: min(frame.height, scrollView.frame.height / translatedScrollViewScaleFactor))
     }
     
     private var scrollableArea: CGSize {
@@ -68,10 +70,16 @@ open class ScrollViewMinimap: UIControl {
     }
     
     public override func updateConstraints() {
-        let leftOffset = (contentInset.left + contentOffset.x) / (zoomScale * scrollViewWidthScale) * minimumZoomScale
-        let topOffset = (contentInset.top + contentOffset.y) / (zoomScale * scrollViewHeightScale) * minimumZoomScale
+        guard let scrollView = scrollView else {
+            super.updateConstraints()
+            return
+        }
         
-        if let scrollView = scrollView, imageViewAspectRatioConstraint.multiplier != scrollView.contentSizeAspectRatio {
+        let translatedScrollViewScaleFactor = scrollViewScaleFactor(translatedForMinimumZoomScale: true)
+        let leftOffset = (scrollView.contentInset.left + scrollView.contentOffset.x) / translatedScrollViewScaleFactor
+        let topOffset = (scrollView.contentInset.top + scrollView.contentOffset.y) / translatedScrollViewScaleFactor
+        
+        if imageViewAspectRatioConstraint.multiplier != scrollView.contentSizeAspectRatio {
             imageView.removeConstraint(imageViewAspectRatioConstraint)
             imageViewAspectRatioConstraint = imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: scrollView.contentSizeAspectRatio)
             imageViewAspectRatioConstraint.isActive = true
@@ -139,19 +147,18 @@ open class ScrollViewMinimap: UIControl {
 
     @objc
     private func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+        guard let scrollView = scrollView else { return }
         if gestureRecognizer.state == .began {
-            lastKnownContentOffset = contentOffset
+            lastKnownContentOffset = scrollView.contentOffset
         }
         
         let translationPoint = gestureRecognizer.translation(in: self)
-        let contentViewToMinimapScaleFactor = CGPoint(x: scrollViewWidthScale * (zoomScale / minimumZoomScale),
-                                                      y: scrollViewHeightScale * (zoomScale / minimumZoomScale))
-        let scaledTranslationPoint = CGPoint(x: translationPoint.x * contentViewToMinimapScaleFactor.x,
-                                             y: translationPoint.y * contentViewToMinimapScaleFactor.y)
+        let translatedScrollViewScaleFactor = scrollViewScaleFactor(translatedForMinimumZoomScale: true)
+        let scaledTranslationPoint = CGPoint(x: translationPoint.x * translatedScrollViewScaleFactor,
+                                             y: translationPoint.y * translatedScrollViewScaleFactor)
         
-        guard let scrollView = scrollView else { return }
-        let maxXContentOffset = max(scrollView.contentInset.left + scrollView.contentSize.width - (highlightViewSize.width * contentViewToMinimapScaleFactor.x), 0)
-        let maxYContentOffset = max(scrollView.contentInset.top + scrollView.contentSize.height - (highlightViewSize.height * contentViewToMinimapScaleFactor.y), 0)
+        let maxXContentOffset = max(scrollView.contentInset.left + scrollView.contentSize.width - (highlightViewSize.width * translatedScrollViewScaleFactor), 0)
+        let maxYContentOffset = max(scrollView.contentInset.top + scrollView.contentSize.height - (highlightViewSize.height * translatedScrollViewScaleFactor), 0)
         scrollView.contentOffset = CGPoint(x: min(max(-scrollView.contentInset.left, lastKnownContentOffset.x + scaledTranslationPoint.x), maxXContentOffset),
                                            y: min(max(-scrollView.contentInset.top, lastKnownContentOffset.y + scaledTranslationPoint.y), maxYContentOffset))
     }
@@ -160,36 +167,22 @@ open class ScrollViewMinimap: UIControl {
 
 private extension ScrollViewMinimap {
     
-    var contentInset: UIEdgeInsets {
-        guard let scrollView = scrollView else { return UIEdgeInsets.zero }
-        return scrollView.contentInset
-    }
-    
-    var contentOffset: CGPoint {
-        guard let scrollView = scrollView else { return CGPoint.zero }
-        return scrollView.contentOffset
-    }
-    
-    var zoomScale: CGFloat {
+    func zoomScale(relativeToMinimumZoomScale: Bool = false) -> CGFloat {
         guard let scrollView = scrollView else { return 1 }
+        if relativeToMinimumZoomScale {
+            return scrollView.zoomScale / scrollView.minimumZoomScale
+        }
         return scrollView.zoomScale
     }
     
-    var minimumZoomScale: CGFloat {
+    func scrollViewScaleFactor(translatedForMinimumZoomScale: Bool = false) -> CGFloat {
         guard let scrollView = scrollView else { return 1 }
-        return scrollView.minimumZoomScale
-    }
-    
-    // Minimap width scale relative to managed UIScrollView's width
-    var scrollViewWidthScale: CGFloat {
-        guard let scrollView = scrollView else { return 1 }
-        return scrollView.frame.width / frame.width
-    }
-    
-    // Minimap height scale relative to managed UIScrollView's height
-    var scrollViewHeightScale: CGFloat {
-        guard let scrollView = scrollView else { return 1 }
-        return scrollView.frame.height / frame.height
+        let scrollViewScaleFactor = min(scrollView.frame.width / frame.width,
+                                        scrollView.frame.height / frame.height)
+        if translatedForMinimumZoomScale {
+            return scrollViewScaleFactor * zoomScale(relativeToMinimumZoomScale: true)
+        }
+        return scrollViewScaleFactor
     }
     
 }
@@ -199,11 +192,6 @@ private extension UIScrollView {
     var contentSizeAspectRatio: CGFloat {
         guard contentSize.height != 0 else { return 1 }
         return contentSize.width / contentSize.height
-    }
-    
-    var trueContentSize: CGSize {
-        CGSize(width: contentSize.width / zoomScale,
-               height: contentSize.height / zoomScale)
     }
     
     func contentViewThumbnailImage() -> UIImage? {
