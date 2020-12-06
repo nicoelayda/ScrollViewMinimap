@@ -58,8 +58,8 @@ open class ScrollViewMinimap: UIControl {
     
     public override var bounds: CGRect {
         didSet {
-            setNeedsUpdateConstraints()
             setNeedsDisplay()
+            setNeedsUpdateConstraints()
         }
     }
     

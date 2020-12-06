@@ -20,19 +20,18 @@ class MinimapViewController: UIViewController {
         setupMinimap()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.centerContentView(in: self.scrollView)
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        centerContentView(in: scrollView)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
         coordinator.animate(alongsideTransition: { [weak self] _ in
-            self?.minimap.addDropShadow()
+            guard let self = self else { return }
+            self.centerContentView(in: self.scrollView)
+            self.minimap.addDropShadow()
         }, completion: nil)
 
     }
