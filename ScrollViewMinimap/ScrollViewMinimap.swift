@@ -5,7 +5,13 @@
 
 import UIKit
 
+@IBDesignable
 open class ScrollViewMinimap: UIControl {
+    
+    @IBInspectable open var highlightAlpha: CGFloat = 0.4
+    @IBInspectable open var highlightBorderColor: UIColor = .gray
+    @IBInspectable open var highlightBorderWidth: CGFloat = 1
+    @IBInspectable open var highlightColor: UIColor = .white
     
     public weak var scrollView: UIScrollView? {
         didSet {
@@ -62,7 +68,7 @@ open class ScrollViewMinimap: UIControl {
     }
     
     private func updateHighlightViewVisibility(animated: Bool) {
-        var newAlpha: CGFloat = 0.3
+        var newAlpha: CGFloat = highlightAlpha
         if !showsHighlightOnMinimumZoomScale, highlightViewSize.equalTo(frame.size) {
             newAlpha = 0
         }
@@ -149,12 +155,10 @@ open class ScrollViewMinimap: UIControl {
         ])
         
         addSubview(highlightView)
-        highlightView.alpha = 0.4
-        highlightView.backgroundColor = .white
-        highlightView.layer.borderColor = UIColor.lightGray.cgColor
-        highlightView.layer.borderWidth = 1
-        
-        
+        highlightView.alpha = highlightAlpha
+        highlightView.backgroundColor = highlightColor
+        highlightView.layer.borderColor = highlightBorderColor.cgColor
+        highlightView.layer.borderWidth = highlightBorderWidth
         
         highlightView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -249,6 +253,28 @@ private extension UIScrollView {
         bounds.origin = oldOrigin
         
         return image
+    }
+    
+}
+
+// MARK: - Interface builder
+
+extension ScrollViewMinimap {
+    
+    open override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        
+        setupSubviews()
+        
+        highlightViewLeftConstraint.constant = 16
+        highlightViewTopConstraint.constant = 16
+        highlightViewWidthConstraint.constant = frame.width * 0.5
+        highlightViewHeightConstraint.constant = frame.height * 0.5
+        
+        let bundle = Bundle(for: Self.self)
+        imageView.image = UIImage(named: "Building", in: bundle, compatibleWith: nil)
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
     }
     
 }
