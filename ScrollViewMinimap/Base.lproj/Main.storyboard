@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Minimap View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ScrollViewMinimap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MinimapViewController" id="BYZ-38-t0r" customClass="MinimapViewController" customModule="ScrollViewMinimap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,12 +37,16 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="width" secondItem="dIB-80-3VY" secondAttribute="width" id="0L6-KG-oeF"/>
-                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="height" secondItem="dIB-80-3VY" secondAttribute="height" id="323-Y9-ttZ"/>
-                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="top" secondItem="xem-2O-JDI" secondAttribute="top" id="Hmx-Qr-m7O"/>
-                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="trailing" secondItem="xem-2O-JDI" secondAttribute="trailing" id="cqe-hc-kJT"/>
-                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="bottom" secondItem="xem-2O-JDI" secondAttribute="bottom" id="sSW-nW-ayg"/>
-                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="leading" secondItem="xem-2O-JDI" secondAttribute="leading" id="spO-br-cM9"/>
+                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="centerY" secondItem="xem-2O-JDI" secondAttribute="centerY" id="CFQ-gz-iSF"/>
+                                    <constraint firstItem="xem-2O-JDI" firstAttribute="trailing" secondItem="Knm-Cg-RPV" secondAttribute="trailing" id="DgR-mM-Ay6"/>
+                                    <constraint firstItem="Z2V-ev-CZd" firstAttribute="width" secondItem="dIB-80-3VY" secondAttribute="width" placeholder="YES" id="Ge1-JV-lyB"/>
+                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="height" relation="lessThanOrEqual" secondItem="dIB-80-3VY" secondAttribute="height" id="Taj-uT-7af"/>
+                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="top" secondItem="xem-2O-JDI" secondAttribute="top" id="ah3-0h-zaG"/>
+                                    <constraint firstItem="Z2V-ev-CZd" firstAttribute="height" secondItem="dIB-80-3VY" secondAttribute="height" placeholder="YES" id="bFp-z4-BfU"/>
+                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="width" relation="lessThanOrEqual" secondItem="dIB-80-3VY" secondAttribute="width" id="fsn-id-dTx"/>
+                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="centerX" secondItem="xem-2O-JDI" secondAttribute="centerX" id="nw0-sx-eR1"/>
+                                    <constraint firstItem="Knm-Cg-RPV" firstAttribute="leading" secondItem="xem-2O-JDI" secondAttribute="leading" id="pvg-tJ-vca"/>
+                                    <constraint firstItem="xem-2O-JDI" firstAttribute="bottom" secondItem="Knm-Cg-RPV" secondAttribute="bottom" id="uxn-te-YMa"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="xem-2O-JDI"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="dIB-80-3VY"/>
