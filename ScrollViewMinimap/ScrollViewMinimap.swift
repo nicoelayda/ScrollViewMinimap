@@ -10,6 +10,7 @@ open class ScrollViewMinimap: UIControl {
     public weak var scrollView: UIScrollView? {
         didSet {
             imageView.image = scrollView?.asImage()
+            setNeedsUpdateConstraints()
         }
     }
     
@@ -18,6 +19,10 @@ open class ScrollViewMinimap: UIControl {
     // MARK: - Image View
     
     private let imageView = UIImageView()
+    
+    private lazy var imageViewAspectRatioConstraint: NSLayoutConstraint = {
+        imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
+    }()
     
     // MARK: - Highlight View
     
@@ -79,6 +84,12 @@ open class ScrollViewMinimap: UIControl {
             topOffset += min(scrollableArea.height, maxYCenteringOffset) / 2
         }
         
+        if let scrollView = scrollView, imageViewAspectRatioConstraint.multiplier != scrollView.contentSizeAspectRatio {
+            imageView.removeConstraint(imageViewAspectRatioConstraint)
+            imageViewAspectRatioConstraint = imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: scrollView.contentSizeAspectRatio)
+            imageViewAspectRatioConstraint.isActive = true
+        }
+        
         highlightViewLeftConstraint.constant = min(max(0, leftOffset), scrollableArea.width)
         highlightViewTopConstraint.constant = min(max(0, topOffset), scrollableArea.height)
         highlightViewWidthConstraint.constant = highlightViewSize.width
@@ -114,6 +125,7 @@ open class ScrollViewMinimap: UIControl {
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            imageViewAspectRatioConstraint,
         ])
         
         addSubview(highlightView)
@@ -206,6 +218,11 @@ private extension UIView {
 }
 
 private extension UIScrollView {
+    
+    var contentSizeAspectRatio: CGFloat {
+        guard contentSize.height != 0 else { return 1 }
+        return contentSize.width / contentSize.height
+    }
     
     var trueContentSize: CGSize {
         CGSize(width: contentSize.width / zoomScale,
