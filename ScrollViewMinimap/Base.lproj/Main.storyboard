@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
@@ -14,17 +14,17 @@
             <objects>
                 <viewController storyboardIdentifier="MinimapViewController" id="BYZ-38-t0r" customClass="MinimapViewController" customModule="ScrollViewMinimap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3c-nq-Wnu">
-                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Knm-Cg-RPV">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Z2V-ev-CZd">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="818"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -52,22 +52,22 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="dIB-80-3VY"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wu2-3R-vt3" customClass="ScrollViewMinimap" customModule="ScrollViewMinimap" customModuleProvider="target">
-                                <rect key="frame" x="274" y="608.5" width="112" height="245.5"/>
+                                <rect key="frame" x="245" y="607" width="117" height="211"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N3c-nq-Wnu" secondAttribute="trailing" constant="20" id="1eI-Jv-UVd"/>
-                            <constraint firstItem="Wu2-3R-vt3" firstAttribute="height" secondItem="N3c-nq-Wnu" secondAttribute="height" multiplier="0.3" placeholder="YES" id="5HI-dk-dNV" userLabel="[Placeholder] Minimap Height Constraint"/>
-                            <constraint firstItem="N3c-nq-Wnu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="AUR-K2-iPA"/>
+                            <constraint firstAttribute="trailing" secondItem="N3c-nq-Wnu" secondAttribute="trailing" id="1eI-Jv-UVd"/>
+                            <constraint firstItem="Wu2-3R-vt3" firstAttribute="height" secondItem="N3c-nq-Wnu" secondAttribute="height" multiplier="0.25" placeholder="YES" id="5HI-dk-dNV" userLabel="[Placeholder] Minimap Height Constraint"/>
+                            <constraint firstItem="N3c-nq-Wnu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AUR-K2-iPA"/>
                             <constraint firstItem="Wu2-3R-vt3" firstAttribute="width" relation="lessThanOrEqual" secondItem="N3c-nq-Wnu" secondAttribute="width" multiplier="0.3" id="Ice-cA-YME"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Wu2-3R-vt3" secondAttribute="trailing" constant="28" id="LFM-Zg-H3Y"/>
                             <constraint firstItem="Wu2-3R-vt3" firstAttribute="height" relation="lessThanOrEqual" secondItem="N3c-nq-Wnu" secondAttribute="height" multiplier="0.3" id="Oyp-Ml-05h"/>
-                            <constraint firstItem="N3c-nq-Wnu" firstAttribute="bottom" secondItem="Wu2-3R-vt3" secondAttribute="bottom" constant="8" id="QWC-si-Y4K"/>
-                            <constraint firstItem="N3c-nq-Wnu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="k1q-9y-aw4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="N3c-nq-Wnu" secondAttribute="bottom" id="mwz-UM-INo"/>
+                            <constraint firstItem="Wu2-3R-vt3" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="8" id="ena-ha-bke"/>
+                            <constraint firstItem="N3c-nq-Wnu" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="k1q-9y-aw4"/>
+                            <constraint firstAttribute="bottom" secondItem="N3c-nq-Wnu" secondAttribute="bottom" id="mwz-UM-INo"/>
                             <constraint firstItem="Wu2-3R-vt3" firstAttribute="width" secondItem="N3c-nq-Wnu" secondAttribute="width" multiplier="0.3" placeholder="YES" id="tDj-rh-QJE" userLabel="[Placeholder] Minimap Width Constraint"/>
                         </constraints>
                     </view>
