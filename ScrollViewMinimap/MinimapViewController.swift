@@ -28,6 +28,15 @@ class MinimapViewController: UIViewController {
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            self?.minimap.addDropShadow()
+        }, completion: nil)
+
+    }
+    
     private func setupScrollView() {
         scrollView.delegate = self
         scrollView.minimumZoomScale = 1.0
@@ -46,8 +55,10 @@ class MinimapViewController: UIViewController {
     private func setupMinimap() {
         minimap.scrollView = scrollView
         minimap.scrollViewCentersContent = true
+        
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            self.minimap.addDropShadow()
             self.minimap.setNeedsDisplay()
         }
     }
@@ -74,6 +85,23 @@ extension MinimapViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return contentView
+    }
+    
+}
+
+// MARK: - UIView Extension - Drop Shadows
+
+private extension UIView {
+    
+    func addDropShadow() {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.3
+        layer.shadowOffset = CGSize(width: 0, height: -3)
+        layer.shadowRadius = 8
+        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
     }
     
 }
