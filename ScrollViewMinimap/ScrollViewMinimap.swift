@@ -124,8 +124,12 @@ open class ScrollViewMinimap: UIControl {
         ])
         
         addSubview(highlightView)
-        highlightView.layer.borderColor = UIColor.red.cgColor
-        highlightView.layer.borderWidth = 2
+        highlightView.alpha = 0.4
+        highlightView.backgroundColor = .white
+        highlightView.layer.borderColor = UIColor.lightGray.cgColor
+        highlightView.layer.borderWidth = 1
+        
+        
         
         highlightView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
