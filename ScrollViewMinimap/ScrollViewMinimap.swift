@@ -14,8 +14,6 @@ open class ScrollViewMinimap: UIControl {
         }
     }
     
-    public var scrollViewCentersContent = false
-    
     // MARK: - Image View
     
     private let imageView = UIImageView()
@@ -70,16 +68,8 @@ open class ScrollViewMinimap: UIControl {
     }
     
     public override func updateConstraints() {
-        var leftOffset = (contentInset.left + contentOffset.x) / (zoomScale * scrollViewWidthScale) * minimumZoomScale
-        var topOffset = (contentInset.top + contentOffset.y) / (zoomScale * scrollViewHeightScale) * minimumZoomScale
-        
-        if scrollViewCentersContent, let scrollView = scrollView {
-            let maxXCenteringOffset = (scrollView.frame.width - (scrollView.trueContentSize.width * minimumZoomScale)) / scrollViewWidthScale
-            leftOffset += min(scrollableArea.width, maxXCenteringOffset) / 2
-            
-            let maxYCenteringOffset = (scrollView.frame.height - (scrollView.trueContentSize.height * minimumZoomScale)) / scrollViewHeightScale
-            topOffset += min(scrollableArea.height, maxYCenteringOffset) / 2
-        }
+        let leftOffset = (contentInset.left + contentOffset.x) / (zoomScale * scrollViewWidthScale) * minimumZoomScale
+        let topOffset = (contentInset.top + contentOffset.y) / (zoomScale * scrollViewHeightScale) * minimumZoomScale
         
         if let scrollView = scrollView, imageViewAspectRatioConstraint.multiplier != scrollView.contentSizeAspectRatio {
             imageView.removeConstraint(imageViewAspectRatioConstraint)
