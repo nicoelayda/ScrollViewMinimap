@@ -101,6 +101,7 @@ open class ScrollViewMinimap: UIControl {
     
     private func commonInit() {
         setupSubviews()
+        setupGestureRecognizers()
     }
     
     // MARK: - Setup
@@ -126,6 +127,34 @@ open class ScrollViewMinimap: UIControl {
             highlightViewWidthConstraint,
             highlightViewHeightConstraint,
         ])
+    }
+    
+    private func setupGestureRecognizers() {
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        highlightView.addGestureRecognizer(panGestureRecognizer)
+    }
+ 
+    // MARK: - Gesture recognizers
+
+    private var lastKnownContentOffset: CGPoint = CGPoint.zero
+
+    @objc
+    private func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+        if gestureRecognizer.state == .began {
+            lastKnownContentOffset = contentOffset
+        }
+        
+        let translationPoint = gestureRecognizer.translation(in: self)
+        let contentViewToMinimapScaleFactor = CGPoint(x: scrollViewWidthScale * (zoomScale / minimumZoomScale),
+                                                      y: scrollViewHeightScale * (zoomScale / minimumZoomScale))
+        let scaledTranslationPoint = CGPoint(x: translationPoint.x * contentViewToMinimapScaleFactor.x,
+                                             y: translationPoint.y * contentViewToMinimapScaleFactor.y)
+        
+        guard let scrollView = scrollView else { return }
+        let maxXContentOffset = max(scrollView.contentInset.left + scrollView.contentSize.width - (highlightViewSize.width * contentViewToMinimapScaleFactor.x), 0)
+        let maxYContentOffset = max(scrollView.contentInset.top + scrollView.contentSize.height - (highlightViewSize.height * contentViewToMinimapScaleFactor.y), 0)
+        scrollView.contentOffset = CGPoint(x: min(max(-scrollView.contentInset.left, lastKnownContentOffset.x + scaledTranslationPoint.x), maxXContentOffset),
+                                           y: min(max(-scrollView.contentInset.top, lastKnownContentOffset.y + scaledTranslationPoint.y), maxYContentOffset))
     }
     
 }
