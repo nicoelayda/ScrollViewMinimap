@@ -14,6 +14,11 @@ open class ScrollViewMinimap: UIControl {
         }
     }
     
+    public func update(animated: Bool) {
+        setNeedsUpdateConstraints()
+        updateHighlightViewVisibility(animated: animated)
+    }
+    
     // MARK: - Image View
     
     private let imageView = UIImageView()
@@ -23,6 +28,8 @@ open class ScrollViewMinimap: UIControl {
     }()
     
     // MARK: - Highlight View
+    
+    public var showsHighlightOnMinimumZoomScale = true
     
     private let highlightView = UIView()
     
@@ -52,6 +59,24 @@ open class ScrollViewMinimap: UIControl {
     private var scrollableArea: CGSize {
         CGSize(width: frame.width - highlightViewSize.width,
                height: frame.height - highlightViewSize.height)
+    }
+    
+    private func updateHighlightViewVisibility(animated: Bool) {
+        var newAlpha: CGFloat = 0.3
+        if !showsHighlightOnMinimumZoomScale, highlightViewSize.equalTo(frame.size) {
+            newAlpha = 0
+        }
+        
+        if !Float(newAlpha).isEqual(to: Float(highlightView.alpha)) {
+            let changeAlpha: () -> () = { [weak self] in
+                self?.highlightView.alpha = newAlpha
+            }
+            if animated {
+                UIView.animate(withDuration: 0.2, animations: changeAlpha)
+            } else {
+                changeAlpha()
+            }
+        }
     }
     
     // MARK: - UIView

@@ -53,6 +53,7 @@ class MinimapViewController: UIViewController {
 
     private func setupMinimap() {
         minimap.scrollView = scrollView
+        minimap.showsHighlightOnMinimumZoomScale = false
         
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -72,13 +73,14 @@ class MinimapViewController: UIViewController {
 // MARK: - UIScrollViewDelegate
 
 extension MinimapViewController: UIScrollViewDelegate {
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        minimap.setNeedsUpdateConstraints()
+        minimap.update(animated: true)
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         self.centerContentView(in: self.scrollView)
-        minimap.setNeedsUpdateConstraints()
+        minimap.update(animated: true)
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
