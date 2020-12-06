@@ -9,7 +9,7 @@ open class ScrollViewMinimap: UIControl {
     
     public weak var scrollView: UIScrollView? {
         didSet {
-            imageView.image = scrollView?.asImage()
+            imageView.image = scrollView?.contentViewThumbnailImage()
             setNeedsUpdateConstraints()
         }
     }
@@ -66,10 +66,7 @@ open class ScrollViewMinimap: UIControl {
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
         guard let scrollView = scrollView else { return }
-        let lastZoomScale = scrollView.zoomScale
-        scrollView.setZoomScale(scrollView.minimumZoomScale, animated: false)
-        imageView.image = scrollView.asImage()
-        scrollView.setZoomScale(lastZoomScale, animated: false)
+        imageView.image = scrollView.contentViewThumbnailImage()
     }
     
     public override func updateConstraints() {
@@ -207,16 +204,6 @@ private extension ScrollViewMinimap {
     
 }
 
-private extension UIView {
-    
-    func asImage() -> UIImage {
-        let renderer = UIGraphicsImageRenderer(bounds: bounds)
-        return renderer.image { context in
-            layer.render(in: context.cgContext)
-        }
-    }
-}
-
 private extension UIScrollView {
     
     var contentSizeAspectRatio: CGFloat {
@@ -227,6 +214,34 @@ private extension UIScrollView {
     var trueContentSize: CGSize {
         CGSize(width: contentSize.width / zoomScale,
                height: contentSize.height / zoomScale)
+    }
+    
+    func contentViewThumbnailImage() -> UIImage? {
+        let oldZoomScale = zoomScale
+        let oldOrigin = bounds.origin
+        
+        setZoomScale(minimumZoomScale, animated: false)
+        bounds.origin = .zero
+        
+        let boundsAspectRatio = bounds.width / bounds.height
+        let contentAspectRatio = contentSizeAspectRatio
+        
+        var contentSize = bounds.size
+        if (boundsAspectRatio < contentAspectRatio) {
+            contentSize.height = contentSize.height / contentAspectRatio * boundsAspectRatio
+        } else {
+            contentSize.width = contentSize.width / boundsAspectRatio * contentAspectRatio
+        }
+        
+        let renderer = UIGraphicsImageRenderer(bounds: CGRect(origin: .zero, size: contentSize))
+        let image = renderer.image { context in
+            layer.render(in: context.cgContext)
+        }
+        
+        setZoomScale(oldZoomScale, animated: false)
+        bounds.origin = oldOrigin
+        
+        return image
     }
     
 }
