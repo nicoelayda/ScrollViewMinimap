@@ -106,18 +106,18 @@ open class ScrollViewMinimap: UIControl {
             return
         }
         
-        let translatedScrollViewScaleFactor = scrollViewScaleFactor(translatedForMinimumZoomScale: true)
-        let leftOffset = (scrollView.contentInset.left + scrollView.contentOffset.x) / translatedScrollViewScaleFactor
-        let topOffset = (scrollView.contentInset.top + scrollView.contentOffset.y) / translatedScrollViewScaleFactor
-        
         if imageViewAspectRatioConstraint.multiplier != scrollView.contentSizeAspectRatio {
             imageView.removeConstraint(imageViewAspectRatioConstraint)
             imageViewAspectRatioConstraint = imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: scrollView.contentSizeAspectRatio)
             imageViewAspectRatioConstraint.isActive = true
         }
         
-        highlightViewLeftConstraint.constant = min(max(0, leftOffset), scrollableArea.width)
-        highlightViewTopConstraint.constant = min(max(0, topOffset), scrollableArea.height)
+        let translatedScrollViewScaleFactor = scrollViewScaleFactor(translatedForMinimumZoomScale: true)
+        let leftOffset = (scrollView.contentInset.left + scrollView.contentOffset.x) / translatedScrollViewScaleFactor
+        let topOffset = (scrollView.contentInset.top + scrollView.contentOffset.y) / translatedScrollViewScaleFactor
+        
+        highlightViewLeftConstraint.constant = leftOffset
+        highlightViewTopConstraint.constant = topOffset
         highlightViewWidthConstraint.constant = highlightViewSize.width
         highlightViewHeightConstraint.constant = highlightViewSize.height
 
