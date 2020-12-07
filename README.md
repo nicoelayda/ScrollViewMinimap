@@ -18,13 +18,13 @@ Download [ScrollViewMinimap.swift](https://github.com/nicoelayda/ScrollViewMinim
 1. Add `ScrollViewMinimap` to your `UIScrollView`'s view controller.
 2. In `viewDidLoad()`, set the `scrollView` property to your scroll view.
 
-    ```
+    ```swift
     minimap.scrollView = scrollView
     ```
     
 3. In your `UIScrollViewDelegate`, call `update(animated:)` in `scrollViewDidScroll(_:)` and `scrollViewDidZoom(_:)` .
 
-    ```
+    ```swift
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         minimap.update(animated: true)
     }
