@@ -190,8 +190,9 @@ open class ScrollViewMinimap: UIControl {
         let scaledTranslationPoint = CGPoint(x: translationPoint.x * translatedScrollViewScaleFactor,
                                              y: translationPoint.y * translatedScrollViewScaleFactor)
         
-        let maxXContentOffset = max(scrollView.contentInset.left + scrollView.contentSize.width - (highlightViewSize.width * translatedScrollViewScaleFactor), 0)
-        let maxYContentOffset = max(scrollView.contentInset.top + scrollView.contentSize.height - (highlightViewSize.height * translatedScrollViewScaleFactor), 0)
+        let maxXContentOffset =
+            scrollView.contentSize.width - scrollView.contentInset.left - (highlightViewSize.width * translatedScrollViewScaleFactor)
+        let maxYContentOffset = scrollView.contentSize.height - scrollView.contentInset.top - (highlightViewSize.height * translatedScrollViewScaleFactor)
         scrollView.contentOffset = CGPoint(x: min(max(-scrollView.contentInset.left, lastKnownContentOffset.x + scaledTranslationPoint.x), maxXContentOffset),
                                            y: min(max(-scrollView.contentInset.top, lastKnownContentOffset.y + scaledTranslationPoint.y), maxYContentOffset))
     }
