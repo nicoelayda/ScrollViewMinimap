@@ -14,6 +14,8 @@ ScrollViewMinimap is a control for adding minimap functionality to `UIScrollView
 
 Download [ScrollViewMinimap.swift](https://github.com/nicoelayda/ScrollViewMinimap/blob/master/ScrollViewMinimap/ScrollViewMinimap.swift) and add it to your project.
 
+Support for Cocoapods and Swift Package Manager will be added soon.
+
 ## Usage
 1. Add `ScrollViewMinimap` to your `UIScrollView`'s view controller.
 2. In `viewDidLoad()`, set the `scrollView` property to your scroll view.
