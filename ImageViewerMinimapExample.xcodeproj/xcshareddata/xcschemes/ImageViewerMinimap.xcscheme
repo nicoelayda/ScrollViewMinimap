@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "03387487257B082900182E2E"
-               BuildableName = "ScrollViewMinimap.app"
-               BlueprintName = "ScrollViewMinimap"
-               ReferencedContainer = "container:ScrollViewMinimap.xcodeproj">
+               BuildableName = "ImageViewerMinimapExample.app"
+               BlueprintName = "ImageViewerMinimapExample"
+               ReferencedContainer = "container:ImageViewerMinimapExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "03387487257B082900182E2E"
-            BuildableName = "ScrollViewMinimap.app"
-            BlueprintName = "ScrollViewMinimap"
-            ReferencedContainer = "container:ScrollViewMinimap.xcodeproj">
+            BuildableName = "ImageViewerMinimapExample.app"
+            BlueprintName = "ImageViewerMinimapExample"
+            ReferencedContainer = "container:ImageViewerMinimapExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "03387487257B082900182E2E"
-            BuildableName = "ScrollViewMinimap.app"
-            BlueprintName = "ScrollViewMinimap"
-            ReferencedContainer = "container:ScrollViewMinimap.xcodeproj">
+            BuildableName = "ImageViewerMinimapExample.app"
+            BlueprintName = "ImageViewerMinimapExample"
+            ReferencedContainer = "container:ImageViewerMinimapExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

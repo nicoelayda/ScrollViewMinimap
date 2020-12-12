@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0338748C257B082900182E2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0338748B257B082900182E2E /* AppDelegate.swift */; };
 		0338748E257B082900182E2E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0338748D257B082900182E2E /* SceneDelegate.swift */; };
-		03387490257B082900182E2E /* MinimapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0338748F257B082900182E2E /* MinimapViewController.swift */; };
+		03387490257B082900182E2E /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0338748F257B082900182E2E /* ImageViewerViewController.swift */; };
 		03387493257B082900182E2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03387491257B082900182E2E /* Main.storyboard */; };
 		03387495257B082B00182E2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03387494257B082B00182E2E /* Assets.xcassets */; };
 		03387498257B082B00182E2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03387496257B082B00182E2E /* LaunchScreen.storyboard */; };
@@ -17,10 +17,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		03387488257B082900182E2E /* ScrollViewMinimap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollViewMinimap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		03387488257B082900182E2E /* ImageViewerMinimapExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageViewerMinimapExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0338748B257B082900182E2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0338748D257B082900182E2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0338748F257B082900182E2E /* MinimapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimapViewController.swift; sourceTree = "<group>"; };
+		0338748F257B082900182E2E /* ImageViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
 		03387492257B082900182E2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		03387494257B082B00182E2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03387497257B082B00182E2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -42,7 +42,7 @@
 		0338747F257B082900182E2E = {
 			isa = PBXGroup;
 			children = (
-				0338748A257B082900182E2E /* ScrollViewMinimap */,
+				0338748A257B082900182E2E /* ImageViewerMinimapExample */,
 				03387489257B082900182E2E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,32 +50,32 @@
 		03387489257B082900182E2E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				03387488257B082900182E2E /* ScrollViewMinimap.app */,
+				03387488257B082900182E2E /* ImageViewerMinimapExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0338748A257B082900182E2E /* ScrollViewMinimap */ = {
+		0338748A257B082900182E2E /* ImageViewerMinimapExample */ = {
 			isa = PBXGroup;
 			children = (
 				0338748B257B082900182E2E /* AppDelegate.swift */,
 				0338748D257B082900182E2E /* SceneDelegate.swift */,
-				0338748F257B082900182E2E /* MinimapViewController.swift */,
+				0338748F257B082900182E2E /* ImageViewerViewController.swift */,
 				033874A1257B811F00182E2E /* ScrollViewMinimap.swift */,
 				03387494257B082B00182E2E /* Assets.xcassets */,
 				03387491257B082900182E2E /* Main.storyboard */,
 				03387496257B082B00182E2E /* LaunchScreen.storyboard */,
 				03387499257B082B00182E2E /* Info.plist */,
 			);
-			path = ScrollViewMinimap;
+			path = ImageViewerMinimapExample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		03387487257B082900182E2E /* ScrollViewMinimap */ = {
+		03387487257B082900182E2E /* ImageViewerMinimapExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0338749C257B082B00182E2E /* Build configuration list for PBXNativeTarget "ScrollViewMinimap" */;
+			buildConfigurationList = 0338749C257B082B00182E2E /* Build configuration list for PBXNativeTarget "ImageViewerMinimapExample" */;
 			buildPhases = (
 				03387484257B082900182E2E /* Sources */,
 				03387485257B082900182E2E /* Frameworks */,
@@ -85,9 +85,9 @@
 			);
 			dependencies = (
 			);
-			name = ScrollViewMinimap;
+			name = ImageViewerMinimapExample;
 			productName = ScrollViewMinimap;
-			productReference = 03387488257B082900182E2E /* ScrollViewMinimap.app */;
+			productReference = 03387488257B082900182E2E /* ImageViewerMinimapExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -104,7 +104,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 03387483257B082900182E2E /* Build configuration list for PBXProject "ScrollViewMinimap" */;
+			buildConfigurationList = 03387483257B082900182E2E /* Build configuration list for PBXProject "ImageViewerMinimapExample" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -117,7 +117,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				03387487257B082900182E2E /* ScrollViewMinimap */,
+				03387487257B082900182E2E /* ImageViewerMinimapExample */,
 			);
 		};
 /* End PBXProject section */
@@ -140,7 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03387490257B082900182E2E /* MinimapViewController.swift in Sources */,
+				03387490257B082900182E2E /* ImageViewerViewController.swift in Sources */,
 				0338748C257B082900182E2E /* AppDelegate.swift in Sources */,
 				0338748E257B082900182E2E /* SceneDelegate.swift in Sources */,
 				033874A2257B811F00182E2E /* ScrollViewMinimap.swift in Sources */,
@@ -300,13 +300,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4R2WCG677U;
-				INFOPLIST_FILE = ScrollViewMinimap/Info.plist;
+				INFOPLIST_FILE = ImageViewerMinimapExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicoelayda.ScrollViewMinimap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicoelayda.ImageViewerMinimapExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -319,13 +319,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4R2WCG677U;
-				INFOPLIST_FILE = ScrollViewMinimap/Info.plist;
+				INFOPLIST_FILE = ImageViewerMinimapExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicoelayda.ScrollViewMinimap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicoelayda.ImageViewerMinimapExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -334,7 +334,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		03387483257B082900182E2E /* Build configuration list for PBXProject "ScrollViewMinimap" */ = {
+		03387483257B082900182E2E /* Build configuration list for PBXProject "ImageViewerMinimapExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0338749A257B082B00182E2E /* Debug */,
@@ -343,7 +343,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0338749C257B082B00182E2E /* Build configuration list for PBXNativeTarget "ScrollViewMinimap" */ = {
+		0338749C257B082B00182E2E /* Build configuration list for PBXNativeTarget "ImageViewerMinimapExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0338749D257B082B00182E2E /* Debug */,

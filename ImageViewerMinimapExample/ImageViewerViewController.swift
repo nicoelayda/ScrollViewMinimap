@@ -5,7 +5,7 @@
 
 import UIKit
 
-class MinimapViewController: UIViewController {
+class ImageViewerViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -72,7 +72,7 @@ class MinimapViewController: UIViewController {
 
 // MARK: - UIScrollViewDelegate
 
-extension MinimapViewController: UIScrollViewDelegate {
+extension ImageViewerViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         minimap.update(animated: true)
@@ -111,13 +111,13 @@ private extension UIView {
 import SwiftUI
 
 @available(iOS 13, *)
-struct MinimapViewControllerRepresentable: UIViewControllerRepresentable {
+struct ImageViewerViewControllerRepresentable: UIViewControllerRepresentable {
     
-    func makeUIViewController(context: Context) -> MinimapViewController {
-        UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MinimapViewController")
+    func makeUIViewController(context: Context) -> ImageViewerViewController {
+        UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ImageViewerViewController")
     }
     
-    func updateUIViewController(_ uiViewController: MinimapViewController, context: Context) { }
+    func updateUIViewController(_ uiViewController: ImageViewerViewController, context: Context) { }
     
 }
 
@@ -128,7 +128,7 @@ struct ViewController_Preview: PreviewProvider {
 
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            MinimapViewControllerRepresentable()
+            ImageViewerViewControllerRepresentable()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
         }
