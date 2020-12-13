@@ -5,13 +5,17 @@
 
 import UIKit
 
-@IBDesignable
+private let DefaultHighlightAlpha: CGFloat = 0.4
+private let DefaultHighlightBorderColor: UIColor = .gray
+private let DefaultHighlightBorderWidth: CGFloat = 1
+private let DefaultHighlightColor: UIColor = .white
+
 open class ScrollViewMinimap: UIControl {
     
-    @IBInspectable open var highlightAlpha: CGFloat = 0.4
-    @IBInspectable open var highlightBorderColor: UIColor = .gray
-    @IBInspectable open var highlightBorderWidth: CGFloat = 1
-    @IBInspectable open var highlightColor: UIColor = .white
+    open var highlightAlpha: CGFloat = DefaultHighlightAlpha
+    open var highlightBorderColor: UIColor = DefaultHighlightBorderColor
+    open var highlightBorderWidth: CGFloat = DefaultHighlightBorderWidth
+    open var highlightColor: UIColor = DefaultHighlightColor
     
     public weak var scrollView: UIScrollView? {
         didSet {
@@ -190,8 +194,7 @@ open class ScrollViewMinimap: UIControl {
         let scaledTranslationPoint = CGPoint(x: translationPoint.x * translatedScrollViewScaleFactor,
                                              y: translationPoint.y * translatedScrollViewScaleFactor)
         
-        let maxXContentOffset =
-            scrollView.contentSize.width - scrollView.contentInset.left - (highlightViewSize.width * translatedScrollViewScaleFactor)
+        let maxXContentOffset = scrollView.contentSize.width - scrollView.contentInset.left - (highlightViewSize.width * translatedScrollViewScaleFactor)
         let maxYContentOffset = scrollView.contentSize.height - scrollView.contentInset.top - (highlightViewSize.height * translatedScrollViewScaleFactor)
         scrollView.contentOffset = CGPoint(x: min(max(-scrollView.contentInset.left, lastKnownContentOffset.x + scaledTranslationPoint.x), maxXContentOffset),
                                            y: min(max(-scrollView.contentInset.top, lastKnownContentOffset.y + scaledTranslationPoint.y), maxYContentOffset))
@@ -254,28 +257,6 @@ private extension UIScrollView {
         bounds.origin = oldOrigin
         
         return image
-    }
-    
-}
-
-// MARK: - Interface builder
-
-extension ScrollViewMinimap {
-    
-    open override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        
-        setupSubviews()
-        
-        highlightViewLeftConstraint.constant = 16
-        highlightViewTopConstraint.constant = 16
-        highlightViewWidthConstraint.constant = frame.width * 0.5
-        highlightViewHeightConstraint.constant = frame.height * 0.5
-        
-        let bundle = Bundle(for: Self.self)
-        imageView.image = UIImage(named: "Building", in: bundle, compatibleWith: nil)
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
     }
     
 }
