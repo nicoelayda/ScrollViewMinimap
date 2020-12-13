@@ -22,7 +22,13 @@ pod 'ScrollViewMinimap', '~> 1.0.0'
 
 ### Swift Package Manager
 
-Add `ScrollViewMinimap` package to your target's dependencies.
+In Xcode, select **File > Swift Packages > Add Package Dependency...**
+
+Add `https://github.com/nicoelayda/ScrollViewMinimap.git` as the package repository URL.
+
+**or**
+
+If you have an existing `Package.swift` file, add `ScrollViewMinimap` package to your target's dependencies.
 
 ```swift
 dependencies: [
