@@ -12,9 +12,27 @@ ScrollViewMinimap is a control for adding minimap functionality to `UIScrollView
 
 ## Installation
 
-Download [ScrollViewMinimap.swift](https://github.com/nicoelayda/ScrollViewMinimap/blob/master/ScrollViewMinimap/ScrollViewMinimap.swift) and add it to your project.
+### Cocoapods
 
-Support for Cocoapods and Swift Package Manager will be added soon.
+Add `ScrollViewMinimap` to your `Podfile`.
+
+```ruby
+pod 'ScrollViewMinimap', '~> 1.0.0'
+```
+
+### Swift Package Manager
+
+Add `ScrollViewMinimap` package to your target's dependencies.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/nicoelayda/ScrollViewMinimap.git", .upToNextMajor(from: "1.0.0"))
+]
+```
+
+### Manual
+
+Copy the contents of [`Sources/ScrollViewMinimap`](https://github.com/nicoelayda/ScrollViewMinimap/tree/master/Sources/ScrollViewMinimap) to your project.
 
 ## Usage
 1. Add `ScrollViewMinimap` to your `UIScrollView`'s view controller.
@@ -36,15 +54,13 @@ Support for Cocoapods and Swift Package Manager will be added soon.
     }
     ```
 
-Check out **ScrollViewMinimap.xcodeproj** for a fully functional sample app.
+Check out [**ScrollViewMinimap-Examples**](https://github.com/nicoelayda/ScrollViewMinimap-Examples) for sample projects using ScrollViewMinimap.
 
 ## License
 
 MIT. See [LICENSE](https://github.com/nicoelayda/ScrollViewMinimap/blob/master/LICENSE).
 
 ## Credits
-
-App Icon from [Freepik](https://www.freepik.com).
 
 Sample Photo from [Unsplash](https://unsplash.com/photos/KwT8fAZq6fI).
 
