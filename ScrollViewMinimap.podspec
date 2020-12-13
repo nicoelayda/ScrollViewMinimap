@@ -22,8 +22,6 @@ Pod::Spec.new do |spec|
     spec.source       = { :git => "https://github.com/nicoelayda/ScrollViewMinimap.git", :tag => "v#{spec.version}" }
     spec.source_files  = "Sources/**/*.swift"
 
-    spec.resource_bundles = { "ScrollViewMinimap-Assets" => ["Sources/ScrollViewMinimap/Assets.xcassets"] }
-
     spec.swift_versions = ["5.0", "5.1", "5.2", "5.3"]
   
   end

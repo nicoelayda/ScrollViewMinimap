@@ -5,7 +5,17 @@
 
 import UIKit
 
-open class ScrollViewMinimap: MinimapBase {
+private let DefaultHighlightAlpha: CGFloat = 0.4
+private let DefaultHighlightBorderColor: UIColor = .gray
+private let DefaultHighlightBorderWidth: CGFloat = 1
+private let DefaultHighlightColor: UIColor = .white
+
+open class ScrollViewMinimap: UIControl {
+    
+    open var highlightAlpha: CGFloat = DefaultHighlightAlpha
+    open var highlightBorderColor: UIColor = DefaultHighlightBorderColor
+    open var highlightBorderWidth: CGFloat = DefaultHighlightBorderWidth
+    open var highlightColor: UIColor = DefaultHighlightColor
     
     public weak var scrollView: UIScrollView? {
         didSet {
@@ -247,33 +257,6 @@ private extension UIScrollView {
         bounds.origin = oldOrigin
         
         return image
-    }
-    
-}
-
-// MARK: - Interface builder
-
-extension ScrollViewMinimap {
-    
-    open override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        
-        setupSubviews()
-        
-        highlightViewLeftConstraint.constant = 16
-        highlightViewTopConstraint.constant = 16
-        highlightViewWidthConstraint.constant = frame.width * 0.5
-        highlightViewHeightConstraint.constant = frame.height * 0.5
-        
-        #if SWIFT_PACKAGE
-        let bundle = Bundle.module
-        #else
-        let bundle = Bundle(for: Self.self)
-        #endif
-        
-        imageView.image = UIImage(named: "MinimapThumbnail", in: bundle, compatibleWith: nil)
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
     }
     
 }
