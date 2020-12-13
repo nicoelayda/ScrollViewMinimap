@@ -3,20 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		033573E7258526D4008B5F11 /* ScrollViewMinimap in Frameworks */ = {isa = PBXBuildFile; productRef = 033573E6258526D4008B5F11 /* ScrollViewMinimap */; };
 		0338748C257B082900182E2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0338748B257B082900182E2E /* AppDelegate.swift */; };
 		0338748E257B082900182E2E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0338748D257B082900182E2E /* SceneDelegate.swift */; };
 		03387490257B082900182E2E /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0338748F257B082900182E2E /* ImageViewerViewController.swift */; };
 		03387493257B082900182E2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03387491257B082900182E2E /* Main.storyboard */; };
 		03387495257B082B00182E2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03387494257B082B00182E2E /* Assets.xcassets */; };
 		03387498257B082B00182E2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03387496257B082B00182E2E /* LaunchScreen.storyboard */; };
-		033874A2257B811F00182E2E /* ScrollViewMinimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033874A1257B811F00182E2E /* ScrollViewMinimap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		033573DC258525FF008B5F11 /* ScrollViewMinimap */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ScrollViewMinimap; sourceTree = "<group>"; };
 		03387488257B082900182E2E /* ImageViewerMinimapExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageViewerMinimapExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0338748B257B082900182E2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0338748D257B082900182E2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -25,7 +26,6 @@
 		03387494257B082B00182E2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03387497257B082B00182E2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03387499257B082B00182E2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		033874A1257B811F00182E2E /* ScrollViewMinimap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewMinimap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +33,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				033573E7258526D4008B5F11 /* ScrollViewMinimap in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		033573DF2585264A008B5F11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0338747F257B082900182E2E = {
 			isa = PBXGroup;
 			children = (
+				033573DC258525FF008B5F11 /* ScrollViewMinimap */,
 				0338748A257B082900182E2E /* ImageViewerMinimapExample */,
 				03387489257B082900182E2E /* Products */,
+				033573DF2585264A008B5F11 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,7 +71,6 @@
 				0338748B257B082900182E2E /* AppDelegate.swift */,
 				0338748D257B082900182E2E /* SceneDelegate.swift */,
 				0338748F257B082900182E2E /* ImageViewerViewController.swift */,
-				033874A1257B811F00182E2E /* ScrollViewMinimap.swift */,
 				03387494257B082B00182E2E /* Assets.xcassets */,
 				03387491257B082900182E2E /* Main.storyboard */,
 				03387496257B082B00182E2E /* LaunchScreen.storyboard */,
@@ -86,6 +95,9 @@
 			dependencies = (
 			);
 			name = ImageViewerMinimapExample;
+			packageProductDependencies = (
+				033573E6258526D4008B5F11 /* ScrollViewMinimap */,
+			);
 			productName = ScrollViewMinimap;
 			productReference = 03387488257B082900182E2E /* ImageViewerMinimapExample.app */;
 			productType = "com.apple.product-type.application";
@@ -143,7 +155,6 @@
 				03387490257B082900182E2E /* ImageViewerViewController.swift in Sources */,
 				0338748C257B082900182E2E /* AppDelegate.swift in Sources */,
 				0338748E257B082900182E2E /* SceneDelegate.swift in Sources */,
-				033874A2257B811F00182E2E /* ScrollViewMinimap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +364,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		033573E6258526D4008B5F11 /* ScrollViewMinimap */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ScrollViewMinimap;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 03387480257B082900182E2E /* Project object */;
 }

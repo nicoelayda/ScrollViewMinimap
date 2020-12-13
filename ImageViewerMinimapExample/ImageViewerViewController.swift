@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import ScrollViewMinimap
 
 class ImageViewerViewController: UIViewController {
 

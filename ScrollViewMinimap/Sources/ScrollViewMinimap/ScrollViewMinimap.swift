@@ -5,13 +5,7 @@
 
 import UIKit
 
-@IBDesignable
-open class ScrollViewMinimap: UIControl {
-    
-    @IBInspectable open var highlightAlpha: CGFloat = 0.4
-    @IBInspectable open var highlightBorderColor: UIColor = .gray
-    @IBInspectable open var highlightBorderWidth: CGFloat = 1
-    @IBInspectable open var highlightColor: UIColor = .white
+open class ScrollViewMinimap: MinimapBase {
     
     public weak var scrollView: UIScrollView? {
         didSet {
@@ -272,8 +266,13 @@ extension ScrollViewMinimap {
         highlightViewWidthConstraint.constant = frame.width * 0.5
         highlightViewHeightConstraint.constant = frame.height * 0.5
         
+        #if SWIFT_PACKAGE
+        let bundle = Bundle.module
+        #else
         let bundle = Bundle(for: Self.self)
-        imageView.image = UIImage(named: "Building", in: bundle, compatibleWith: nil)
+        #endif
+        
+        imageView.image = UIImage(named: "MinimapThumbnail", in: bundle, compatibleWith: nil)
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
     }
